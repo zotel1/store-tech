@@ -1,1 +1,10 @@
-<p>product-list works!</p>
+{{ productsState.state.status() }}
+
+<div class="mx-auto max-w-screen-xl">
+<div class="grid grid-cols-[repeat(4,300px)] gap-6">
+@for (product of productsState.state().products; track product) {
+    <app-product-card class="block" [product]="product"></app-product-card>
+}
+<div></div>
+</div>
+</div>
