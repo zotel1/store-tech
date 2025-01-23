@@ -4,20 +4,20 @@ import { ProductDetailStateService } from '../../data-access/product-detail-stat
 
 @Component({
   selector: 'app-product-detail',
+  standalone: true,
   imports: [CurrencyPipe],
   templateUrl: './product-detail.component.html',
-  styles: ``,
-  providers: [ProductDetailStateService],
+  providers: [ProductDetailSateService],
 })
-export class ProductDetailComponent {
-  productDetailState = inject(ProductDetailStateService).state;
+export default class ProductDetailComponent {
+  productDetailState = inject(ProductDetailSateService).state;
   cartState = inject(CartStateService).state;
 
   id = input.required<string>();
 
   constructor() {
     effect(() => {
-      this.productDetailState.getById(this.id);
+      this.productDetailState.getById(this.id());
     });
   }
 
@@ -27,5 +27,4 @@ export class ProductDetailComponent {
       quantity: 1,
     });
   }
-
 }
